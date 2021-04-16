@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="lipenghui.leosnow@10.227.90.154:22" type="ssh/sftp">
+        <config>
+          <option name="projectRootOnTarget" value="/home/lipenghui.leosnow/algorithrm" />
+          <option name="serverName" value="lipenghui.leosnow@10.227.90.154:22 password" />
+          <option name="useRsync" value="true" />
+        </config>
+        <ContributedStateBase type="GoLanguageRuntime">
+          <config>
+            <option name="goPath" value="/home/lipenghui.leosnow/go" />
+            <option name="goRoot" value="/usr/local/bin/go" />
+            <option name="goVersion" value="go1.14.13 linux/amd64" />
+          </config>
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>
