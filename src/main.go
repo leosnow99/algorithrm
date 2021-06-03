@@ -1,18 +1,11 @@
 package main
 
-import (
-	"algorithm/src/dp"
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	result := dp.MaxCoins2([]int{3, 2, 5})
-	fmt.Println(result)
-
-	dp.TestSortedEnvelopes()
-
-	lcse := dp.Lcse("a12sdfk1", "sdfk123j")
-	fmt.Println(lcse)
-	lcst1 := dp.Lcst2("sdfk213j", "a12sdfk1")
-	fmt.Println(lcst1)
+	arr := make([]int, 3)
+	fmt.Println("len: ", len(arr))
+	fmt.Println("cap: ", cap(arr))
+	var demo [3][3]int
+	demo[1][2] = 1
 }
