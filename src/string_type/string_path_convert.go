@@ -1,10 +1,10 @@
 package string_type
 
-import set "github.com/deckarep/golang-set"
+import sets "github.com/deckarep/golang-set"
 import "github.com/ahrtr/gocontainer/list"
 
 func getNexts(words []string) map[string][]string {
-	dict := set.NewSet(words)
+	dict := sets.NewSet(words)
 	nexts := make(map[string][]string)
 
 	for _, w := range words {
@@ -13,7 +13,7 @@ func getNexts(words []string) map[string][]string {
 	return nexts
 }
 
-func getNext(word string, dict set.Set) (res []string) {
+func getNext(word string, dict sets.Set) (res []string) {
 	chs := []byte(word)
 	for cur := byte('a'); cur < 'z'; cur++ {
 		for i := 0; i < len(chs); i++ {
@@ -34,7 +34,7 @@ func getDistance(start string, nexts map[string][]string) map[string]int {
 	var distance = make(map[string]int)
 	distance[start] = 0
 	var queue = list.NewLinkedList()
-	var sets = set.NewSet()
+	var sets = sets.NewSet()
 	sets.Add(start)
 	for !queue.IsEmpty() {
 		v, _ := queue.Get(0)
