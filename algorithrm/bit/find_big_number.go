@@ -40,7 +40,7 @@ func getMax2(a, b int) int {
 	scC := sign(c)
 	difSab := scA ^ scB
 	sameSab := flip(difSab)
-	returnA := difSab * scA + sameSab * scC
+	returnA := difSab*scA + sameSab*scC
 	returnB := flip(returnA)
-	return returnA * a + returnB * b
+	return returnA*a + returnB*b
 }
