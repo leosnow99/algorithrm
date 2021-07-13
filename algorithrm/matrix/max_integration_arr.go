@@ -62,6 +62,7 @@ func getLIL2(arr []int) int {
 				length = util.Max(length, j-i+1)
 			}
 		}
+
 		sets = make(map[int]bool)
 	}
 	return length
