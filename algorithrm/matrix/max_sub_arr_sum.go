@@ -27,5 +27,6 @@ func maxSum(arr []int) int {
 			cur = 0
 		}
 	}
+
 	return max
 }
