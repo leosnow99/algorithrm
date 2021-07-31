@@ -48,3 +48,12 @@ func MinUInt64(i, j uint64) uint64 {
 	}
 	return i
 }
+
+func NewMatrixInt(row, col int) [][]int {
+	m := make([][]int, row)
+	for i := range m {
+		m[i] = make([]int, col)
+	}
+
+	return m
+}
