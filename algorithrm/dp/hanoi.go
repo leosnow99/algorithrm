@@ -36,18 +36,21 @@ func hanoiProcess(arr []int, length, from, mid, to int) int {
 	if length == -1 {
 		return 0
 	}
+
 	if arr[length] != from && arr[length] != to {
 		return -1
 	}
+
 	if arr[length] == from {
 		return hanoiProcess(arr, length-1, from, to, mid)
-	} else {
-		rest := hanoiProcess(arr, length-1, mid, from, to)
-		if rest == -1 {
-			return rest
-		}
-		return (1 << rest) + rest
 	}
+
+	rest := hanoiProcess(arr, length-1, mid, from, to)
+	if rest == -1 {
+		return rest
+	}
+
+	return (1 << rest) + rest
 }
 
 func step2(arr []int) int {

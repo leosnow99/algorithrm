@@ -1,8 +1,9 @@
 package string_type
 
 import (
-	"github.com/ahrtr/gocontainer/stack"
 	"strconv"
+
+	"github.com/ahrtr/gocontainer/stack"
 )
 
 // 公式字符串求值

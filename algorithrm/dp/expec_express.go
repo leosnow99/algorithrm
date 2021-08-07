@@ -46,15 +46,13 @@ func p(exp []byte, desired bool, l, r int) int {
 		if exp[l] == 1 {
 			if desired {
 				return 1
-			} else {
-				return 0
 			}
+			return 0
 		} else {
 			if desired {
 				return 0
-			} else {
-				return 1
 			}
+			return 1
 		}
 	}
 	res := 0
@@ -136,7 +134,7 @@ func eeDP(exp string, desired bool) int {
 		}
 	}
 	if desired {
-		return t[0][len(chs) -1]
+		return t[0][len(chs)-1]
 	}
-	return f[0][len(chs) -1]
+	return f[0][len(chs)-1]
 }

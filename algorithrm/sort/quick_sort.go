@@ -49,8 +49,7 @@ func demo2() {
 	var b int
 	a = 5
 	b = 3
-	var c float64
-	c = float64(a / b)
+	var c = float64(a / b)
 	fmt.Println(c)
 
 }

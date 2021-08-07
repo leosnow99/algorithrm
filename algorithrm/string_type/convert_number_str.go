@@ -49,7 +49,8 @@ func convert(str string) int {
 	if !posi {
 		i = 1
 	}
-	var cur, res = byte(0), 0
+
+	cur, res := byte(0), 0
 	for ; i < len(chas); i++ {
 		cur = '0' - chas[i]
 		if res < minq || (res == minq && int(cur) < minr) {
@@ -57,8 +58,10 @@ func convert(str string) int {
 		}
 		res = res*10 + int(cur)
 	}
+
 	if posi {
 		return -res
 	}
+
 	return res
 }
