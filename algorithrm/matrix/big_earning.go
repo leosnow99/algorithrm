@@ -1,5 +1,9 @@
 package matrix
 
+import (
+	"container/heap"
+)
+
 type program struct {
 	cost   int
 	profit int
@@ -17,10 +21,41 @@ func getMaxMoney(W, K int, costs, profits []int) int {
 		return W
 	}
 
-	return 0
+	// 项目花费小根堆
+	costMinHeap := newCostSmallRootHeap(len(costs))
+	// 项目利润大根堆
+	profitMaxHeap := newProfitMaxRootHeap(len(costs))
+
+	for i := 0; i < len(costs); i++ {
+		heap.Push(costMinHeap, newProgram(costs[i], profits[i]))
+	}
+
+	// 依次做 K 个项目
+	for i := 1; i <= K; i++ {
+		// 当前资金为W，在项目花费小根堆里所有花费小于或等于W 的项目，都可以考虑
+		for costMinHeap.Len() != 0 && (*costMinHeap)[0].cost <= W {
+			// 把可以考虑的项目都放进项目利润大根堆里
+			heap.Push(profitMaxHeap, heap.Pop(costMinHeap).(program))
+		}
+
+		// 如果此时项目利润大根堆为空，说明可以考虑的项目为空
+		// 说明当前资金W 已经无法解锁任何项目，直接返回W
+		if profitMaxHeap.Len() == 0 {
+			return W
+		}
+
+		W += heap.Pop(profitMaxHeap).(program).profit
+	}
+
+	return W
 }
 
 type costSmallRootHeap []program
+
+func newCostSmallRootHeap(length int) *costSmallRootHeap {
+	t := costSmallRootHeap(make([]program, length))
+	return &t
+}
 
 func (c *costSmallRootHeap) Len() int {
 	return len(*c)
@@ -46,6 +81,11 @@ func (c *costSmallRootHeap) Pop() interface{} {
 }
 
 type profitMaxRootHeap []program
+
+func newProfitMaxRootHeap(length int) *profitMaxRootHeap {
+	t := profitMaxRootHeap(make([]program, length))
+	return &t
+}
 
 func (p *profitMaxRootHeap) Len() int {
 	return len(*p)
