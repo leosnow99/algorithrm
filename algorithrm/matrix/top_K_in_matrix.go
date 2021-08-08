@@ -89,12 +89,12 @@ func headHeapify(heap []heapNode, index, heapSize int) {
 	left, right := index>>1+1, index>>1+2
 	largest := index
 
-	for left < largest {
+	for left < heapSize {
 		if heap[index].value < heap[left].value {
 			largest = left
 		}
 
-		if heap[largest].value < heap[right].value {
+		if right < heapSize && heap[largest].value < heap[right].value {
 			largest = right
 		}
 

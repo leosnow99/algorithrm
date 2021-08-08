@@ -1,4 +1,4 @@
-package dynamic_programing
+package dp
 
 // 爬楼梯
 func climbStairs(n int) int {
@@ -16,7 +16,7 @@ func climbStairs(n int) int {
 	return dp[n]
 }
 
-//爬楼梯2
+// 爬楼梯2
 func climbStairsDemo2(n int) int {
 	if n == 1 {
 		return 1
@@ -31,7 +31,7 @@ func climbStairsDemo2(n int) int {
 	return last
 }
 
-//最大子序和
+// 最大子序和
 func maxSubArray(nums []int) int {
 	if len(nums) < 1 {
 		return 0
@@ -48,7 +48,7 @@ func maxSubArray(nums []int) int {
 	return result
 }
 
-//最长上升子序列
+// 最长上升子序列
 func lengthOfLIS(nums []int) int {
 	length := len(nums)
 	if length == 0 {
@@ -79,7 +79,7 @@ func max(a, b int) int {
 	return b
 }
 
-//三角形最小路径和
+// 三角形最小路径和
 func minimumTotal(triangle [][]int) int {
 	length := len(triangle)
 	if length == 0 {
@@ -120,7 +120,7 @@ func min(a, b int) int {
 	return b
 }
 
-//最小路径和
+// 最小路径和
 func minPathSum(grid [][]int) int {
 	length := len(grid)
 	if length < 1 {
@@ -140,7 +140,7 @@ func minPathSum(grid [][]int) int {
 	return grid[length-1][len(grid[0])-1]
 }
 
-//打家劫舍
+// 打家劫舍
 func rob(nums []int) int {
 	size := len(nums)
 	if size < 1 {
