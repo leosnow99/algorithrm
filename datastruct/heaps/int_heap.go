@@ -1,4 +1,4 @@
-package heap
+package heaps
 
 type IntHeap struct {
 	Heap []int
