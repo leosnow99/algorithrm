@@ -103,4 +103,66 @@ func rand0To3() int {
 	return rand01()*2 + rand01()
 }
 
+func rand1To6() int {
+	num := 0
+	for {
+		num = rand0To3()*4 + rand0To3()
+		if num <= 11 {
+			break
+		}
+	}
 
+	return num%6 + 1
+}
+
+func rand1ToN(n, m int) int {
+	nMSys := getMSysNum(n-1, m)
+	randNum := getRandMSysNumLessN(nMSys, m)
+	return getNumFromMSysNum(randNum, m) + 1
+}
+
+func getMSysNum(value, m int) []int {
+	res := make([]int, 32)
+	index := len(res) - 1
+	for value != 0 {
+		res[index] = value % m
+		value = value / m
+		index--
+	}
+
+	return res
+}
+
+func getRandMSysNumLessN(nMsy []int, m int) []int {
+	res := make([]int, len(nMsy))
+	start := 0
+	for nMsy[start] != 0 {
+		start++
+	}
+
+	index := start
+	lastEqual := true
+	for index != len(nMsy) {
+		res[index] = rand1ToM(m) - 1
+		if lastEqual {
+			if res[index] > nMsy[index] {
+				index = start
+				lastEqual = true
+				continue
+			} else {
+				lastEqual = res[index] == nMsy[index]
+			}
+		}
+		index++
+	}
+
+	return res
+}
+
+func getNumFromMSysNum(mSysNum []int, m int) (res int) {
+	for i := 0; i < len(mSysNum); i++ {
+		res = res*m + mSysNum[i]
+	}
+
+	return
+}
