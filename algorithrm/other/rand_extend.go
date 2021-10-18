@@ -121,8 +121,9 @@ func rand1ToN(n, m int) int {
 	return getNumFromMSysNum(randNum, m) + 1
 }
 
+// 大端
 func getMSysNum(value, m int) []int {
-	res := make([]int, 32)
+	res := make([]int, 32, 32)
 	index := len(res) - 1
 	for value != 0 {
 		res[index] = value % m
@@ -134,7 +135,7 @@ func getMSysNum(value, m int) []int {
 }
 
 func getRandMSysNumLessN(nMsy []int, m int) []int {
-	res := make([]int, len(nMsy))
+	res := make([]int, len(nMsy), len(nMsy))
 	start := 0
 	for nMsy[start] != 0 {
 		start++
@@ -145,13 +146,13 @@ func getRandMSysNumLessN(nMsy []int, m int) []int {
 	for index != len(nMsy) {
 		res[index] = rand1ToM(m) - 1
 		if lastEqual {
+			// 超出限制重新取
 			if res[index] > nMsy[index] {
 				index = start
 				lastEqual = true
 				continue
-			} else {
-				lastEqual = res[index] == nMsy[index]
 			}
+			lastEqual = res[index] == nMsy[index]
 		}
 		index++
 	}

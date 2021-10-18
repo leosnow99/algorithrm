@@ -15,31 +15,42 @@ func station(dis, oil []int) []bool {
 		return nil
 	}
 
+	// 良好出发点存在的前提：init 点存在。如果 init 点不存在，说明所有的加油站纯能值都小于 0，必然所有点都不是良好出发点。
 	init := changeDisArrayGetInit(dis, oil)
 	if init == -1 {
-		return make([]bool, len(dis))
+		return make([]bool, len(dis), len(dis))
 	}
 
 	return enlargeArea(dis, init)
 }
 
+// 转换 dis 数组为「纯能数组」，并且返回一个大于等于 0 的位置。
 func changeDisArrayGetInit(dis, oil []int) int {
-	init := -1
-	for i := 0; i < len(dis); i++ {
-		dis[i] = oil[i] - dis[i]
-		if dis[i] >= 0 {
-			init = i
+	if len(dis) == 0 || len(dis) != len(oil) {
+		return 0
+	}
+
+	var initPoint = -1
+	for idx, o := range oil {
+		dis[idx] = o - dis[idx]
+
+		if initPoint < 0 && initPoint < dis[idx] {
+			initPoint = dis[idx]
 		}
 	}
 
-	return init
+	return initPoint
 }
 
+// 扩充连通区
 func enlargeArea(dis []int, init int) []bool {
-	res := make([]bool, len(dis))
+	res := make([]bool, len(dis), len(dis))
 	start := init
 	end := nextIndex(start, len(dis))
-	need, rest := 0, 0
+	// need 值为从 start 位置顺时针扩充连通区的要求
+	need := 0
+	// rest 值为从 end 位置逆时针扩充连通区的资源
+	rest := 0
 
 	for {
 		// 当前来到的start 已经在连通区域中，可以确定后续的开始点一定无法转完一圈
